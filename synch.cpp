@@ -1,3 +1,6 @@
+// synch.cpp : Thread Synchronization Program.
+// Copyright (c) Shane Spangenberg 10/14/2019
+
 #include <iostream>
 #include <fstream>
 #include <thread>
