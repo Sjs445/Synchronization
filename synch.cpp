@@ -6,17 +6,18 @@
 using namespace std;
 
 mutex mtx;
+ofstream outFile;
 
-void writeNum(ofstream);
-void writeLett(ofstream);
+void writeNum();
+void writeLett();
 
 int main()
 {
-    ofstream outFile;
     outFile.open("synch.txt");
     outFile.close();
-    thread th1(writeNum, outFile);
-    thread th2(writeLett, outFile);
+   
+    thread th1(writeNum);
+    thread th2(writeLett);
 
     th1.join();
     th2.join();
@@ -24,7 +25,7 @@ int main()
     return 0;
 }
 
-void writeNum(ofstream outFile)
+void writeNum()
 {
     mtx.lock();
     outFile.open("synch.txt", ofstream::app);
@@ -40,7 +41,7 @@ void writeNum(ofstream outFile)
     mtx.unlock();
 }
 
-void writeLett(ofstream outFile)
+void writeLett()
 {
     mtx.lock();
     outFile.open("synch.txt", ofstream::app);
